@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import './notification.css'
 
 const Notification = (props) => {
 	const style = {
@@ -8,23 +9,20 @@ const Notification = (props) => {
 		borderWidth: 1
 	}
 	let notification = props.notification
-
+	console.log(notification.type)
 	return (
 		<div>
-			{notification ?
-				<div style={style}>
-					{notification}
-				</div>
-				:
-				<div></div>
-			}
+			<div className={notification.type} style={style}>
+				{notification.text}
+			</div>
 		</div>
 	)
 }
 
 const mapStateToProps = (state) => {
+	console.log(state)
 	return {
-		notification: state.notification
+		notification: state.notifications
 	}
 }
 

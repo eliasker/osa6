@@ -1,10 +1,11 @@
-const notificationReducer = (state = null, action) => {
-	//console.log('action', action)
+const initialState = { type: 'visible', text: 'this is initial notification' }
+const notificationReducer = (state = initialState, action) => {
+	console.log('action', action)
 	switch (action.type) {
 		case 'NEW_NOTIFICATION':
-			return action.text
+			return { type: 'visible', text: action.text }
 		case 'REMOVE':
-			return null
+			return { ...state, type: 'invisible' }
 		default:
 			return state
 	}
@@ -12,7 +13,7 @@ const notificationReducer = (state = null, action) => {
 }
 
 export const showNotification = (text) => {
-	 return {
+	return {
 		type: 'NEW_NOTIFICATION',
 		text: text
 	}
@@ -25,6 +26,7 @@ export const showNotification = (text) => {
 		setTimeout(() => dispatch({
 			type: 'REMOVE'
 		}), 4000)
+		console.log('settimeout ')
 	}
 	*/
 }

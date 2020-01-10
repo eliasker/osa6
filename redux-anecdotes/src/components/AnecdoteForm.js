@@ -8,7 +8,7 @@ const AnecdoteForm = (props) => {
 		event.preventDefault()
 		const anecdote = event.target.anecdote.value
 		props.createAnecdote(anecdote)
-		showNotification(`created: ${anecdote}`)
+		props.showNotification(`created: ${anecdote}`)
 		event.target.anecdote.value = ''
 	}
 
@@ -24,7 +24,8 @@ const AnecdoteForm = (props) => {
 }
 
 const mapDispatchToProps = {
-	createAnecdote
+	createAnecdote,
+	showNotification
 }
 
 const mapStateToProps = (state) => {
