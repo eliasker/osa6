@@ -1,9 +1,11 @@
 import React from 'react'
+import { showNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = ({ store }) => {
-	const anecdotes = store.getState()
-	const vote = (id) => {
+	const anecdotes = store.getState().anecdotes
+	const vote = (id, anecdote) => {
 		store.dispatch({ type: 'like', data: { id } })
+		showNotification(`you voted: ${anecdote.content}`, store)
 	}
 	return (
 		<div>
@@ -14,7 +16,7 @@ const AnecdoteList = ({ store }) => {
 					</div>
 					<div>
 						has {anecdote.votes}
-						<button onClick={() => vote(anecdote.id)}>vote</button>
+						<button onClick={() => vote(anecdote.id, anecdote)}>vote</button>
 					</div>
 				</div>
 			)}

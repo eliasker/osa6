@@ -17,12 +17,11 @@ const asObject = (anecdote) => {
 	}
 }
 
-
 const initialState = anecdotesAtStart.map(asObject)
 
 const reducer = (state = initialState, action) => {
 	console.log('state now: ', state)
-	console.log('action', action)
+	console.log('anecdotes action', action)
 	switch (action.type) {
 		case 'like':
 			const id = action.data.id
@@ -34,6 +33,7 @@ const reducer = (state = initialState, action) => {
 			const newState = state.map(a => a.id !== id ? a : changedAnecdote)
 			return newState.sort((a, b) => (b.votes - a.votes))
 		case 'add':
+			
 			const anecdoteToAdd = asObject(action.data.anecdote)
 			return state.concat(anecdoteToAdd)
 		default:
