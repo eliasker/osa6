@@ -3,13 +3,16 @@ import { showNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = ({ store }) => {
 	const anecdotes = store.getState().anecdotes
+	const anecdotesToShow = () => {
+		return anecdotes.filter(a => a.content.toLowerCase().includes(store.getState().filter))
+	}
 	const vote = (id, anecdote) => {
-		store.dispatch({ type: 'like', data: { id } })
+		store.dispatch({ type: 'LIKE', data: { id } })
 		showNotification(`you voted: ${anecdote.content}`, store)
 	}
 	return (
 		<div>
-			{anecdotes.map(anecdote =>
+			{anecdotesToShow().map(anecdote =>
 				<div key={anecdote.id}>
 					<div>
 						{anecdote.content}

@@ -1,9 +1,7 @@
 import React from 'react'
 
 const Notification = (props) => {
-	console.log('NOTIFICATION PROPS: ', props)
 	const notification = props.store.getState().notifications
-		//.store.getState().notifications
 	const style = {
 		border: 'solid',
 		padding: 10,
