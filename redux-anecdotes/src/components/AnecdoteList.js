@@ -10,7 +10,8 @@ const AnecdoteList = (props) => {
 	}
 	const vote = (anecdote) => {
 		props.voteAnecdote(anecdote)
-		props.showNotification(`you voted: ${anecdote.content}`)
+		console.log(`you voted: ${anecdote.content}`)
+		props.showNotification(`you voted: ${anecdote.content}`, 4)
 	}
 	return (
 		<div>
